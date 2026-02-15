@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BitLinks (URL Shortener)
 
-## Getting Started
+BitLinks is a small app that turns long links into short, easy-to-share links.
 
-First, run the development server:
+## What you can do
+
+- Paste a long URL
+- Pick a custom short name (example: `my-link`)
+- Get a short link like `http://localhost:3000/my-link`
+- Opening the short link takes you to the original URL
+
+## Setup
+
+### 1) Install dependencies
+
+```bash
+npm install
+```
+
+### 2) Add environment variables
+
+Create a file named `.env.local` in the project root and add:
+
+```bash
+MONGODB_URI="YOUR_MONGODB_CONNECTION_STRING"
+NEXT_PUBLIC_HOST="http://localhost:3000"
+```
+
+What these mean:
+
+- `MONGODB_URI`: where your links are saved (MongoDB connection string)
+- `NEXT_PUBLIC_HOST`: the base address used when showing the generated short link
+
+### 3) Run the project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## How to use
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Go to `/shorten`
+2. Enter the original URL
+3. Enter a short name (must be unique)
+4. Click **Generate** and copy your new link
 
-## Learn More
+## Common issues
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- If the app says the short URL already exists, choose a different short name.
+- If the generated link has the wrong domain, update `NEXT_PUBLIC_HOST`.
